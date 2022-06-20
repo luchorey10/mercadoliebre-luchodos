@@ -356,10 +356,7 @@ div.interests div input{
     }
 
     .burger {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-       
+        display: none;
     }
 }
 

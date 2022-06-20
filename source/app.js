@@ -1,16 +1,24 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log('Servidor corriendo en el puerto:' +port));
+app.use(express.static('public'));
 
-let publicPath = path.join(__dirname, '../public');
-let viewsPath = path.join(__dirname, '../views');
+app.listen(process.env.PORT || 3000, function() {
+    console.log('Servidor corriendo en el puerto 3000');
+});
 
-app.use(express.static('publicPath'));
+app.get('/', (req,res)=>{
+    res.sendFile(__dirname + '/views/index.html');
+});
 
-app.get('/', (req,res)=> res.sendFile(path.join(viewsPath, 'index.html')));
-app.post('/', (req,res)=>res.sendFile(path.join(viewsPath, 'index.html')));
-app.get('/login', (req,res)=>res.sendFile(path.join(viewsPath,'login.html')));
-app.get('/register', (req,res)=>res.sendFile(path.join(viewsPath,'register.html')));
+app.post('/', (req,res)=>{
+    res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/login', (req,res)=>{
+    res.sendFile(__dirname + '/views/login.html');
+});
+
+app.get('/register', (req,res)=>{
+    res.sendFile(__dirname + '/views/register.html');
+});
